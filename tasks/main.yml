@@ -1,34 +1,43 @@
 ---
 - name: NGINX ROLE | Adding NGINX signing key
   apt_key: url=http://nginx.org/keys/nginx_signing.key state=present
+  become: true
 
 - name: NGINX ROLE | Adding sources.list deb url for NGINX
   lineinfile: dest=/etc/apt/sources.list line="deb http://nginx.org/packages/mainline/debian/ {{ debian_codename }} nginx"
+  become: true
 
 - name: NGINX ROLE | Adding sources.list deb-src url for NGINX
   lineinfile: dest=/etc/apt/sources.list line="deb-src http://nginx.org/packages/mainline/debian/ {{ debian_codename }} nginx"
+  become: true
 
 - name: NGINX ROLE | Updating apt cache
   apt:
     update_cache: yes
+  become: true
 
 - name: NGINX ROLE | Installing NGINX
   apt:
     pkg: nginx-full
     state: latest
+  become: true
+
 
 - template:
-    src: ../templates/nginx.conf.j2
-    dest: /etc/nginx/nginx.conf
-    owner: root
-    group: root
-    mode: 0644
-    backup: yes
+   src: ../templates/nginx.conf.j2
+   dest: /etc/nginx/nginx.conf
+   owner: root
+   group: root
+   mode: 0644
+   backup: yes
+  become: true
+
 
 - name: NGINX ROLE | Starting NGINX
   service:
     name: nginx
     state: started
+  become: true
 
 - iptables:
    chain: INPUT
