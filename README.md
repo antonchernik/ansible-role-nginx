@@ -14,9 +14,9 @@ Role Variables
 
 Available variables are listed below, along with default values (see defaults/main.yml):
 
-debian_codename: jessie
-
-Latest debian codename
+| Parameter | Required | Default | Choices | Comments |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| debian_codename | yes | jessie | | Sets latest debian codename |
 
 Dependencies
 ------------
