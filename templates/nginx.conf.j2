@@ -22,5 +22,6 @@ http {
     #tcp_nopush     on;
     keepalive_timeout  65;
     #gzip  on;
+    include /etc/nginx/upstream/*.conf;
     include /etc/nginx/conf.d/*.conf;
 }

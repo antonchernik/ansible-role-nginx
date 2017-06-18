@@ -22,6 +22,11 @@
     state: latest
   become: true
 
+- file:
+    path: /etc/nginx/upstream
+    state: directory
+    mode: "u=rwx,go-rwx"
+  become: true
 
 - template:
    src: ../templates/nginx.conf.j2
