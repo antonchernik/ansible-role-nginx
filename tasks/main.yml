@@ -37,6 +37,17 @@
    backup: yes
   become: true
 
+- file:
+    path: /etc/nginx/sites-available
+    state: directory
+    mode: "u=rwx,go-rwx"
+  become: true
+
+- file:
+    path: /etc/nginx/sites-enabled
+    state: directory
+    mode: "u=rwx,go-rwx"
+  become: true
 
 - name: NGINX ROLE | Starting NGINX
   service:

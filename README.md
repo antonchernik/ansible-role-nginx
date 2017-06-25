@@ -3,11 +3,13 @@ Nginx
 
 Ansible role for installing nginx. Tested platforms are:
 * Debian 8
+* Debian 9
 
 Requirements
 ------------
 
 Debian 8 (jessie)
+Debian 9 (stretch)
 
 Role Variables
 --------------
@@ -16,7 +18,7 @@ Available variables are listed below, along with default values (see defaults/ma
 
 | Parameter | Required | Default | Choices | Comments |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| debian_codename | yes | jessie | | Sets latest debian codename |
+| debian_codename | yes | stretch | | Sets latest debian codename |
 
 Dependencies
 ------------
