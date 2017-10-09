@@ -1,0 +1,12 @@
+---
+- name: NGINX ROLE | Adding NGINX signing key
+  apt_key: url=http://nginx.org/keys/nginx_signing.key state=present
+  become: true
+
+- name: NGINX ROLE | Adding debian sources.list deb url for NGINX
+  lineinfile: dest=/etc/apt/sources.list line="deb http://nginx.org/packages/mainline/debian/ {{ ansible_distribution_release }} nginx"
+  become: true
+
+- name: NGINX ROLE | Adding debian sources.list deb-src url for NGINX
+  lineinfile: dest=/etc/apt/sources.list line="deb-src http://nginx.org/packages/mainline/debian/ {{ ansible_distribution_release }} nginx"
+  become: true

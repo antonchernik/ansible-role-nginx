@@ -1,15 +1,11 @@
 ---
-- name: NGINX ROLE | Adding NGINX signing key
-  apt_key: url=http://nginx.org/keys/nginx_signing.key state=present
-  become: true
+- include_tasks: debian.yml
+  when: ansible_distribution == "Debian"
+  static: no
 
-- name: NGINX ROLE | Adding sources.list deb url for NGINX
-  lineinfile: dest=/etc/apt/sources.list line="deb http://nginx.org/packages/mainline/debian/ {{ debian_codename }} nginx"
-  become: true
-
-- name: NGINX ROLE | Adding sources.list deb-src url for NGINX
-  lineinfile: dest=/etc/apt/sources.list line="deb-src http://nginx.org/packages/mainline/debian/ {{ debian_codename }} nginx"
-  become: true
+- include_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+  static: no
 
 - name: NGINX ROLE | Updating apt cache
   apt:
@@ -18,7 +14,7 @@
 
 - name: NGINX ROLE | Installing NGINX
   apt:
-    pkg: nginx-full
+    pkg: nginx
     state: latest
   become: true
 
